@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Constants from "../../constants";
 import "./index.css";
 
 const Scorecard = (props) => {
@@ -8,17 +9,17 @@ const Scorecard = (props) => {
       <table id="table" className="Scorecard" cellPadding="1" cellSpacing="0">
         <tbody>
           <tr>
-            <th colSpan="6">Frame 1</th>
-            <th colSpan="6">Frame 2</th>
-            <th colSpan="6">Frame 3</th>
-            <th colSpan="6">Frame 4</th>
-            <th colSpan="6">Frame 5</th>
-            <th colSpan="6">Frame 6</th>
-            <th colSpan="6">Frame 7</th>
-            <th colSpan="6">Frame 8</th>
-            <th colSpan="6">Frame 9</th>
-            <th colSpan="6">Frame 10</th>
-            <th colSpan="6">Total Score</th>
+            <th colSpan="6">{Constants.FRAME_1}</th>
+            <th colSpan="6">{Constants.FRAME_2}</th>
+            <th colSpan="6">{Constants.FRAME_3}</th>
+            <th colSpan="6">{Constants.FRAME_4}</th>
+            <th colSpan="6">{Constants.FRAME_5}</th>
+            <th colSpan="6">{Constants.FRAME_6}</th>
+            <th colSpan="6">{Constants.FRAME_7}</th>
+            <th colSpan="6">{Constants.FRAME_8}</th>
+            <th colSpan="6">{Constants.FRAME_9}</th>
+            <th colSpan="6">{Constants.FRAME_10}</th>
+            <th colSpan="6">{Constants.TOTAL_SCORE}</th>
           </tr>
           <tr>
             <td id="r1" colSpan="3"></td>
