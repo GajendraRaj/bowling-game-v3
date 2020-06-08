@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Constants from "../constants";
 import Scorecard from "./scorecard";
+import Controls from "./controls";
 import "./App.css";
 
 class App extends Component {
@@ -10,7 +11,10 @@ class App extends Component {
         <header className="App-header">
           <h1>{Constants.APP_TITLE}</h1>
         </header>
-        <Scorecard />
+        <div className="Game">
+          <Scorecard />
+          <Controls />
+        </div>
       </div>
     );
   }
