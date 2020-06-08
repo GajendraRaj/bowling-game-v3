@@ -5,7 +5,7 @@ import Scorecard from "../../components/scorecard";
 describe("Scorecard component", () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<Scorecard />);
+    wrapper = shallow(<Scorecard frames={[0]} />);
   });
 
   it("should render table with 11 columns", () => {
