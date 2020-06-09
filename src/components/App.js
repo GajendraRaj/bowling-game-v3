@@ -38,7 +38,7 @@ const App = () => {
     const currentScore =
       frameScores && frameScores.length > 0 ? frameScores.slice(-1)[0] : 0;
     if (!isEven(rolls)) {
-      const frameScore = frames[frames.length - 1].slice(-1)[0] + lastScore;
+      const frameScore = frames[getFrameIndex(frames)].slice(-1)[0] + lastScore;
       const updatedFrameScore = frameScores.concat(currentScore + frameScore);
       return updatedFrameScore;
     }
@@ -48,6 +48,10 @@ const App = () => {
 
   const isEven = (number) => {
     return number % 2 === 0;
+  };
+
+  const getFrameIndex = (frames) => {
+    return frames.length - 1;
   };
 
   return (
