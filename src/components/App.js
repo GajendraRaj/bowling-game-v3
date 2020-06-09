@@ -5,12 +5,20 @@ import Controls from "./controls";
 import "./App.css";
 
 const App = () => {
-  const [gameState, setGameState] = useState([]);
+  const initialState = {
+    frames: [],
+  };
+  const [gameState, setGameState] = useState(initialState);
 
   const updateScores = (lastScore) => {
-    const newFrame = [...gameState];
+    const newFrame = [...gameState.frames];
     newFrame.push([lastScore]);
-    setGameState(newFrame);
+    setGameState((prevState) => {
+      return {
+        ...prevState,
+        frames: newFrame,
+      };
+    });
   };
 
   return (
@@ -19,7 +27,7 @@ const App = () => {
         <h1>{Constants.APP_TITLE}</h1>
       </header>
       <div className="Game">
-        <Scorecard frames={gameState} />
+        <Scorecard frames={gameState.frames} />
         <Controls enterScore={updateScores} />
       </div>
     </div>
