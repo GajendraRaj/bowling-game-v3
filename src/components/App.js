@@ -13,32 +13,41 @@ const App = () => {
   const [gameState, setGameState] = useState(initialState);
 
   const updateScores = (lastScore) => {
-    const newFrame = [...gameState.frames];
-    newFrame.push([lastScore]);
-
-    const currentScore =
-      gameState.frameScore && gameState.frameScore.length > 0
-        ? gameState.frameScore.slice(-1)[0]
-        : 0;
-    let updatedFrameScore;
-    if (gameState.rolls % 2 !== 0) {
-      const frameScore =
-        gameState.frames[gameState.frames.length - 1].slice(-1)[0] + lastScore;
-      updatedFrameScore = gameState.frameScores.concat(
-        currentScore + frameScore
-      );
-    }
+    const frame = getUpdatedFrame(lastScore);
+    const frameScore = getFrameScore(lastScore);
 
     setGameState((prevState) => {
       return {
         ...prevState,
-        frames: newFrame,
-        frameScores: updatedFrameScore
-          ? updatedFrameScore
-          : prevState.frameScores,
+        frames: frame,
+        frameScores: frameScore,
         rolls: prevState.rolls + 1,
       };
     });
+  };
+
+  const getUpdatedFrame = (lastScore) => {
+    const newFrame = [...gameState.frames];
+    newFrame.push([lastScore]);
+
+    return newFrame;
+  };
+
+  const getFrameScore = (lastScore) => {
+    const { frames, rolls, frameScores } = gameState;
+    const currentScore =
+      frameScores && frameScores.length > 0 ? frameScores.slice(-1)[0] : 0;
+    if (!isEven(rolls)) {
+      const frameScore = frames[frames.length - 1].slice(-1)[0] + lastScore;
+      const updatedFrameScore = frameScores.concat(currentScore + frameScore);
+      return updatedFrameScore;
+    }
+
+    return frameScores;
+  };
+
+  const isEven = (number) => {
+    return number % 2 === 0;
   };
 
   return (
