@@ -47,7 +47,9 @@ const Scorecard = (props) => {
             <td id="r19" colSpan="2"></td>
             <td id="r20" colSpan="2"></td>
             <td id="r21" colSpan="2"></td>
-            <td id="total-score" colSpan="6"></td>
+            <td id="total-score" colSpan="6">
+              {props.totalScore}
+            </td>
           </tr>
           <tr>
             <td id="frame1Score" colSpan="6">

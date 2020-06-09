@@ -49,4 +49,15 @@ describe("App component", () => {
 
     expect(wrapper.find(Scorecard).props().frameScores[0]).toEqual(1);
   });
+
+  it("should generate Total Score on second button click", () => {
+    const wrapper = mount(<App />);
+    const startButton1 = wrapper.find(Controls).find("button").at(0);
+    const startButton2 = wrapper.find(Controls).find("button").at(1);
+    startButton1.simulate("click");
+    startButton2.simulate("click");
+    const firstFrameScore = wrapper.find(Scorecard).props().frameScores[0];
+
+    expect(wrapper.find(Scorecard).props().totalScore).toEqual(firstFrameScore);
+  });
 });

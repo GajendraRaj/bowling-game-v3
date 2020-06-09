@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Constants from "../constants";
 import Scorecard from "./scorecard";
 import Controls from "./controls";
@@ -11,6 +11,11 @@ const App = () => {
     rolls: 0,
   };
   const [gameState, setGameState] = useState(initialState);
+  const [totalScore, setTotalScore] = useState(0);
+
+  useEffect(() => {
+    setTotalScore(gameState.frameScores.slice(-1)[0]);
+  }, [gameState.frameScores]);
 
   const updateScores = (lastScore) => {
     const frame = getUpdatedFrame(lastScore);
@@ -63,6 +68,7 @@ const App = () => {
         <Scorecard
           frames={gameState.frames}
           frameScores={gameState.frameScores}
+          totalScore={totalScore}
         />
         <Controls enterScore={updateScores} />
       </div>
