@@ -29,4 +29,14 @@ describe("App component", () => {
 
     expect(wrapper.find(Scorecard).props().frames[0]).toEqual([0]);
   });
+
+  it("should generate 2nd roll score on any button click", () => {
+    const wrapper = mount(<App />);
+    const startButton1 = wrapper.find(Controls).find("button").at(0);
+    const startButton2 = wrapper.find(Controls).find("button").at(1);
+    startButton1.simulate("click");
+    startButton2.simulate("click");
+
+    expect(wrapper.find(Scorecard).props().frames[1]).toEqual([1]);
+  });
 });
