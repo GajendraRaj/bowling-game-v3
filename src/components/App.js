@@ -48,12 +48,12 @@ const App = () => {
     if (
       !isEven(rolls) &&
       lastScore !== 10 &&
-      pins.slice(-1)[0] + lastScore !== 10
+      !isSpare(pins.slice(-1)[0], lastScore)
     ) {
       const frameScore = frames[getFrameIndex(frames)].slice(-1)[0] + lastScore;
       const updatedFrameScore = frameScores.concat(currentScore + frameScore);
       return updatedFrameScore;
-    } else if (isEven(rolls) && pins.slice(-2)[0] + pins.slice(-1)[0] === 10) {
+    } else if (isEven(rolls) && isSpare(pins.slice(-2)[0], pins.slice(-1)[0])) {
       const spareFrame = 10 + lastScore;
       return frameScores.concat(currentScore + spareFrame);
     }
@@ -63,6 +63,10 @@ const App = () => {
 
   const isEven = (number) => {
     return number % 2 === 0;
+  };
+
+  const isSpare = (roll1, roll2) => {
+    return roll1 + roll2 === 10;
   };
 
   const getFrameIndex = (frames) => {
