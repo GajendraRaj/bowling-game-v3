@@ -25,4 +25,21 @@ describe("Controls component", () => {
     expect(wrapper.find("button").at(9).text()).toEqual("9");
     expect(wrapper.find("button").at(10).text()).toEqual("10");
   });
+
+  it("should disable button only if the sum of the last roll and its value is greater than 10", () => {
+    const lastRoll = 5;
+    const rolls = 1;
+    const wrapper = shallow(<Controls lastRoll={lastRoll} rolls={rolls} />);
+    expect(wrapper.find("button").at(0).prop("disabled")).toEqual(false);
+    expect(wrapper.find("button").at(1).prop("disabled")).toEqual(false);
+    expect(wrapper.find("button").at(2).prop("disabled")).toEqual(false);
+    expect(wrapper.find("button").at(3).prop("disabled")).toEqual(false);
+    expect(wrapper.find("button").at(4).prop("disabled")).toEqual(false);
+    expect(wrapper.find("button").at(5).prop("disabled")).toEqual(false);
+    expect(wrapper.find("button").at(6).prop("disabled")).toEqual(true);
+    expect(wrapper.find("button").at(7).prop("disabled")).toEqual(true);
+    expect(wrapper.find("button").at(8).prop("disabled")).toEqual(true);
+    expect(wrapper.find("button").at(9).prop("disabled")).toEqual(true);
+    expect(wrapper.find("button").at(10).prop("disabled")).toEqual(true);
+  });
 });
