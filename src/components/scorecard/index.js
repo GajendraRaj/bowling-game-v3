@@ -4,6 +4,10 @@ import Constants from "../../constants";
 import "./index.css";
 
 const Scorecard = (props) => {
+  const { frameScores, totalScore, frames } = props;
+  const renderScores = (frame, roll) => {
+    return frames[frame] ? frames[frame][roll] : "";
+  };
   return (
     <div className="Container">
       <table id="table" className="Scorecard" cellPadding="1" cellSpacing="0">
@@ -23,103 +27,102 @@ const Scorecard = (props) => {
           </tr>
           <tr>
             <td id="r1" colSpan="3">
-              {props.frames[0]}
+              {renderScores(0, 0)}
             </td>
             <td id="r2" colSpan="3">
-              {props.frames[1]}
+              {renderScores(0, 1)}
             </td>
             <td id="r3" colSpan="3">
-              {" "}
-              {props.frames[2]}
+              {renderScores(1, 0)}
             </td>
             <td id="r4" colSpan="3">
-              {props.frames[3]}
+              {renderScores(1, 1)}
             </td>
             <td id="r5" colSpan="3">
-              {props.frames[4]}
+              {renderScores(2, 0)}
             </td>
             <td id="r6" colSpan="3">
-              {props.frames[5]}
+              {renderScores(2, 1)}
             </td>
             <td id="r7" colSpan="3">
-              {props.frames[6]}
+              {renderScores(3, 0)}
             </td>
             <td id="r8" colSpan="3">
-              {props.frames[7]}
+              {renderScores(3, 1)}
             </td>
             <td id="r9" colSpan="3">
-              {props.frames[8]}
+              {renderScores(4, 0)}
             </td>
             <td id="r10" colSpan="3">
-              {props.frames[9]}
+              {renderScores(4, 1)}
             </td>
             <td id="r11" colSpan="3">
-              {props.frames[10]}
+              {renderScores(5, 0)}
             </td>
             <td id="r12" colSpan="3">
-              {props.frames[11]}
+              {renderScores(5, 1)}
             </td>
             <td id="r13" colSpan="3">
-              {props.frames[12]}
+              {renderScores(6, 0)}
             </td>
             <td id="r14" colSpan="3">
-              {props.frames[13]}
+              {renderScores(6, 1)}
             </td>
             <td id="r15" colSpan="3">
-              {props.frames[14]}
+              {renderScores(7, 0)}
             </td>
             <td id="r16" colSpan="3">
-              {props.frames[15]}
+              {renderScores(7, 1)}
             </td>
             <td id="r17" colSpan="3">
-              {props.frames[16]}
+              {renderScores(8, 0)}
             </td>
             <td id="r18" colSpan="3">
-              {props.frames[17]}
+              {renderScores(8, 1)}
             </td>
             <td id="r19" colSpan="2">
-              {props.frames[18]}
+              {renderScores(9, 0)}
             </td>
             <td id="r20" colSpan="2">
-              {props.frames[19]}
+              {renderScores(9, 1)}
             </td>
             <td id="r21" colSpan="2">
-              {props.frames[20]}
+              {renderScores(9, 2)}
             </td>
             <td id="total-score" colSpan="6">
-              {props.totalScore}
+              {totalScore}
             </td>
           </tr>
           <tr>
             <td id="frame1Score" colSpan="6">
-              {props.frameScores[0]}
+              {frameScores[0]}
             </td>
             <td id="frame2Score" colSpan="6">
-              {props.frameScores[1]}
+              {frameScores[1]}
             </td>
             <td id="frame3Score" colSpan="6">
-              {props.frameScores[2]}
+              {frameScores[2]}
             </td>
             <td id="frame4Score" colSpan="6">
-              {props.frameScores[3]}
+              {frameScores[3]}
             </td>
             <td id="frame5Score" colSpan="6">
-              {props.frameScores[4]}
+              {frameScores[4]}
             </td>
             <td id="frame6Score" colSpan="6">
-              {props.frameScores[5]}
+              {frameScores[5]}
             </td>
             <td id="frame7Score" colSpan="6">
-              {props.frameScores[6]}
+              {frameScores[6]}
             </td>
             <td id="frame8Score" colSpan="6">
-              {props.frameScores[7]}
+              {frameScores[7]}
             </td>
             <td id="frame9Score" colSpan="6">
-              {props.frameScores[8]}
+              {frameScores[8]}
             </td>
             <td id="frame10Score" colSpan="6">
-              {props.frameScores[9]}
+              {frameScores[9]}
             </td>
             <td id="total-score" colSpan="6"></td>
           </tr>
