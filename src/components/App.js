@@ -27,9 +27,9 @@ const App = () => {
       return {
         ...prevState,
         frames: frame,
-        rolls: prevState.rolls + 1,
         frameScores: frameScore,
         pins: pins,
+        rolls: prevState.rolls + 1,
       };
     });
   };
@@ -42,13 +42,20 @@ const App = () => {
   };
 
   const getFrameScore = (lastScore) => {
-    const { frames, rolls, frameScores } = gameState;
+    const { frames, rolls, frameScores, pins } = gameState;
     const currentScore =
       frameScores && frameScores.length > 0 ? frameScores.slice(-1)[0] : 0;
-    if (!isEven(rolls)) {
+    if (
+      !isEven(rolls) &&
+      lastScore !== 10 &&
+      pins.slice(-1)[0] + lastScore !== 10
+    ) {
       const frameScore = frames[getFrameIndex(frames)].slice(-1)[0] + lastScore;
       const updatedFrameScore = frameScores.concat(currentScore + frameScore);
       return updatedFrameScore;
+    } else if (isEven(rolls) && pins.slice(-2)[0] + pins.slice(-1)[0] === 10) {
+      const spareFrame = 10 + lastScore;
+      return frameScores.concat(currentScore + spareFrame);
     }
 
     return frameScores;

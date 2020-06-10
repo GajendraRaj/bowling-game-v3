@@ -75,15 +75,31 @@ describe("App component", () => {
     const wrapper = mount(<App />);
     let frameScore = 0;
     for (let i = 0; i < 10; i++) {
-      const startButton1 = wrapper.find(Controls).find("button").at(5);
-      const startButton2 = wrapper.find(Controls).find("button").at(5);
+      const startButton1 = wrapper.find(Controls).find("button").at(4);
+      const startButton2 = wrapper.find(Controls).find("button").at(3);
       startButton1.simulate("click");
       startButton2.simulate("click");
-      frameScore = frameScore + 10;
+      frameScore = frameScore + 7;
 
       expect(wrapper.find(Scorecard).props().frameScores[i]).toEqual(
         frameScore
       );
     }
+  });
+
+  it("should generate correct frames score if sum of both rolls are 10", () => {
+    const wrapper = mount(<App />);
+    for (let i = 0; i < 10; i++) {
+      const startButton1 = wrapper.find(Controls).find("button").at(5);
+      const startButton2 = wrapper.find(Controls).find("button").at(5);
+      startButton1.simulate("click");
+      startButton2.simulate("click");
+      if (i === 9) {
+        const startButton3 = wrapper.find(Controls).find("button").at(5);
+        startButton3.simulate("click");
+      }
+    }
+
+    expect(wrapper.find(Scorecard).props().totalScore).toEqual(150);
   });
 });
