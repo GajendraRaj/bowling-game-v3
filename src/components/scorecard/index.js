@@ -83,9 +83,7 @@ const Scorecard = (props) => {
             <td id="r20" colSpan="2">
               {props.frames[19]}
             </td>
-            <td id="r21" colSpan="2">
-              {props.frames[20]}
-            </td>
+            <td id="r21" colSpan="2"></td>
             <td id="total-score" colSpan="6">
               {props.totalScore}
             </td>
@@ -94,15 +92,33 @@ const Scorecard = (props) => {
             <td id="frame1Score" colSpan="6">
               {props.frameScores[0]}
             </td>
-            <td id="frame2Score" colSpan="6"></td>
-            <td id="frame3Score" colSpan="6"></td>
-            <td id="frame4Score" colSpan="6"></td>
-            <td id="frame5Score" colSpan="6"></td>
-            <td id="frame6Score" colSpan="6"></td>
-            <td id="frame7Score" colSpan="6"></td>
-            <td id="frame8Score" colSpan="6"></td>
-            <td id="frame9Score" colSpan="6"></td>
-            <td id="frame10Score" colSpan="6"></td>
+            <td id="frame2Score" colSpan="6">
+              {props.frameScores[1]}
+            </td>
+            <td id="frame3Score" colSpan="6">
+              {props.frameScores[2]}
+            </td>
+            <td id="frame4Score" colSpan="6">
+              {props.frameScores[3]}
+            </td>
+            <td id="frame5Score" colSpan="6">
+              {props.frameScores[4]}
+            </td>
+            <td id="frame6Score" colSpan="6">
+              {props.frameScores[5]}
+            </td>
+            <td id="frame7Score" colSpan="6">
+              {props.frameScores[6]}
+            </td>
+            <td id="frame8Score" colSpan="6">
+              {props.frameScores[7]}
+            </td>
+            <td id="frame9Score" colSpan="6">
+              {props.frameScores[8]}
+            </td>
+            <td id="frame10Score" colSpan="6">
+              {props.frameScores[9]}
+            </td>
             <td id="total-score" colSpan="6"></td>
           </tr>
         </tbody>

@@ -70,4 +70,20 @@ describe("App component", () => {
       expect(wrapper.find(Scorecard).props().frames[i]).toEqual([2]);
     }
   });
+
+  it("should generate each frame score", () => {
+    const wrapper = mount(<App />);
+    let frameScore = 0;
+    for (let i = 0; i < 10; i++) {
+      const startButton1 = wrapper.find(Controls).find("button").at(5);
+      const startButton2 = wrapper.find(Controls).find("button").at(5);
+      startButton1.simulate("click");
+      startButton2.simulate("click");
+      frameScore = frameScore + 10;
+
+      expect(wrapper.find(Scorecard).props().frameScores[i]).toEqual(
+        frameScore
+      );
+    }
+  });
 });
