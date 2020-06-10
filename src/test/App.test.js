@@ -60,4 +60,14 @@ describe("App component", () => {
 
     expect(wrapper.find(Scorecard).props().totalScore).toEqual(firstFrameScore);
   });
+
+  it("should display roll score on each frame", () => {
+    const wrapper = mount(<App />);
+    for (let i = 0; i < 20; i++) {
+      const startButton1 = wrapper.find(Controls).find("button").at(2);
+      startButton1.simulate("click");
+
+      expect(wrapper.find(Scorecard).props().frames[i]).toEqual([2]);
+    }
+  });
 });

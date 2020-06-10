@@ -28,25 +28,64 @@ const Scorecard = (props) => {
             <td id="r2" colSpan="3">
               {props.frames[1]}
             </td>
-            <td id="r3" colSpan="3"></td>
-            <td id="r4" colSpan="3"></td>
-            <td id="r5" colSpan="3"></td>
-            <td id="r6" colSpan="3"></td>
-            <td id="r7" colSpan="3"></td>
-            <td id="r8" colSpan="3"></td>
-            <td id="r9" colSpan="3"></td>
-            <td id="r10" colSpan="3"></td>
-            <td id="r11" colSpan="3"></td>
-            <td id="r12" colSpan="3"></td>
-            <td id="r13" colSpan="3"></td>
-            <td id="r14" colSpan="3"></td>
-            <td id="r15" colSpan="3"></td>
-            <td id="r16" colSpan="3"></td>
-            <td id="r17" colSpan="3"></td>
-            <td id="r18" colSpan="3"></td>
-            <td id="r19" colSpan="2"></td>
-            <td id="r20" colSpan="2"></td>
-            <td id="r21" colSpan="2"></td>
+            <td id="r3" colSpan="3">
+              {" "}
+              {props.frames[2]}
+            </td>
+            <td id="r4" colSpan="3">
+              {props.frames[3]}
+            </td>
+            <td id="r5" colSpan="3">
+              {props.frames[4]}
+            </td>
+            <td id="r6" colSpan="3">
+              {props.frames[5]}
+            </td>
+            <td id="r7" colSpan="3">
+              {props.frames[6]}
+            </td>
+            <td id="r8" colSpan="3">
+              {props.frames[7]}
+            </td>
+            <td id="r9" colSpan="3">
+              {props.frames[8]}
+            </td>
+            <td id="r10" colSpan="3">
+              {props.frames[9]}
+            </td>
+            <td id="r11" colSpan="3">
+              {props.frames[10]}
+            </td>
+            <td id="r12" colSpan="3">
+              {props.frames[11]}
+            </td>
+            <td id="r13" colSpan="3">
+              {props.frames[12]}
+            </td>
+            <td id="r14" colSpan="3">
+              {props.frames[13]}
+            </td>
+            <td id="r15" colSpan="3">
+              {props.frames[14]}
+            </td>
+            <td id="r16" colSpan="3">
+              {props.frames[15]}
+            </td>
+            <td id="r17" colSpan="3">
+              {props.frames[16]}
+            </td>
+            <td id="r18" colSpan="3">
+              {props.frames[17]}
+            </td>
+            <td id="r19" colSpan="2">
+              {props.frames[18]}
+            </td>
+            <td id="r20" colSpan="2">
+              {props.frames[19]}
+            </td>
+            <td id="r21" colSpan="2">
+              {props.frames[20]}
+            </td>
             <td id="total-score" colSpan="6">
               {props.totalScore}
             </td>
