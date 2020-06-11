@@ -10,6 +10,7 @@ const App = () => {
     frameScores: [],
     pins: [],
     rolls: 0,
+    gameOver: false,
   };
   const [gameState, setGameState] = useState(initialState);
   const [totalScore, setTotalScore] = useState(0);
@@ -23,6 +24,11 @@ const App = () => {
     const frameScore = getFrameScore(lastScore);
     const pins = gameState.pins.concat(lastScore);
     const currentRoll = updateCurrentRoll(lastScore);
+    const gameNotOver =
+      gameState.rolls < 19 ||
+      (gameState.rolls === 19 &&
+        (isSpare(lastScore, gameState.pins.slice(-1)[0]) ||
+          isStrike(pins.slice(-1)[0])));
 
     setGameState((prevState) => {
       return {
@@ -31,6 +37,7 @@ const App = () => {
         frameScores: frameScore,
         pins: pins,
         rolls: currentRoll,
+        gameOver: !gameNotOver,
       };
     });
   };
@@ -141,6 +148,7 @@ const App = () => {
           totalScore={totalScore}
         />
         <Controls
+          gameOver={gameState.gameOver}
           enterScore={updateScores}
           lastRoll={gameState.pins.slice(-1)[0]}
           rolls={gameState.rolls}
