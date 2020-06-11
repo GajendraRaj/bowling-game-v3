@@ -37,7 +37,7 @@ describe("App component", () => {
     startButton1.simulate("click");
     startButton2.simulate("click");
 
-    expect(wrapper.find(Scorecard).props().frames[0][1]).toEqual([1]);
+    expect(wrapper.find(Scorecard).props().frames[0][1]).toEqual(1);
   });
 
   it("should generate first frame score on second button click", () => {
@@ -70,7 +70,7 @@ describe("App component", () => {
       startButton2.simulate("click");
 
       expect(wrapper.find(Scorecard).props().frames[i][0]).toEqual(2);
-      expect(wrapper.find(Scorecard).props().frames[i][1]).toEqual([2]);
+      expect(wrapper.find(Scorecard).props().frames[i][1]).toEqual(2);
     }
   });
 
@@ -118,5 +118,21 @@ describe("App component", () => {
     }
 
     expect(wrapper.find(Scorecard).props().totalScore).toEqual(240);
+  });
+
+  it("should generate last frame score correctly if got the spare in last frame", () => {
+    const wrapper = mount(<App />);
+    for (let i = 0; i < 10; i++) {
+      const startButton1 = wrapper.find(Controls).find("button").at(5);
+      const startButton2 = wrapper.find(Controls).find("button").at(5);
+      startButton1.simulate("click");
+      startButton2.simulate("click");
+      if (i === 9) {
+        const startButton3 = wrapper.find(Controls).find("button").at(5);
+        startButton3.simulate("click");
+      }
+    }
+
+    expect(wrapper.find(Scorecard).props().totalScore).toEqual(150);
   });
 });

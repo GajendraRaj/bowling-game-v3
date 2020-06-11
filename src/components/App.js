@@ -38,12 +38,12 @@ const App = () => {
   const getUpdatedFrame = (lastScore) => {
     let newFrame;
     const { frames, rolls } = gameState;
-    if (isEven(rolls)) {
+    if (isEven(rolls) && rolls !== 20) {
       newFrame = [...frames];
       newFrame.push([lastScore]);
     } else {
-      const newFrameScore = [...frames[getFrameIndex(frames)], [lastScore]];
-      newFrame = [...frames.slice(0, getFrameIndex(frames)), newFrameScore];
+      const newFrameScore = frames[getFrameIndex(frames)].concat([lastScore]);
+      newFrame = frames.slice(0, getFrameIndex(frames)).concat([newFrameScore]);
     }
 
     return newFrame;
@@ -54,11 +54,17 @@ const App = () => {
     const currentScore =
       frameScores && frameScores.length > 0 ? frameScores.slice(-1)[0] : 0;
     if (
-      !isEven(rolls) &&
-      !isStrike(lastScore) &&
-      !isSpare(pins.slice(-1)[0], lastScore)
+      (!isEven(rolls) &&
+        !isStrike(lastScore) &&
+        !isSpare(pins.slice(-1)[0], lastScore)) ||
+      rolls === 20
     ) {
-      const frameScore = frames[getFrameIndex(frames)].slice(-1)[0] + lastScore;
+      const frameScore =
+        rolls === 20
+          ? frames[getFrameIndex(frames)].slice(-1)[0] +
+            frames[getFrameIndex(frames)].slice(-2)[0] +
+            lastScore
+          : frames[getFrameIndex(frames)].slice(-1)[0] + lastScore;
 
       if (pins.slice(-2)[0] === 10 && rolls > 2 && rolls < 20) {
         const bonus = pins.slice(-1)[0] + lastScore + 10;
