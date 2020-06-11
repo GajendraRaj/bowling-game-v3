@@ -24,11 +24,7 @@ const App = () => {
     const frameScore = getFrameScore(lastScore);
     const pins = gameState.pins.concat(lastScore);
     const currentRoll = updateCurrentRoll(lastScore);
-    const gameNotOver =
-      gameState.rolls < 19 ||
-      (gameState.rolls === 19 &&
-        (isSpare(lastScore, gameState.pins.slice(-1)[0]) ||
-          isStrike(pins.slice(-1)[0])));
+    const gameOver = isGameOver(lastScore);
 
     setGameState((prevState) => {
       return {
@@ -37,7 +33,7 @@ const App = () => {
         frameScores: frameScore,
         pins: pins,
         rolls: currentRoll,
-        gameOver: !gameNotOver,
+        gameOver: gameOver,
       };
     });
   };
@@ -135,6 +131,15 @@ const App = () => {
   };
 
   const strikeBonus = (roll1, roll2) => 10 + roll1 + roll2;
+
+  const isGameOver = (lastScore) => {
+    const { rolls, pins } = gameState;
+    const gameNotOver =
+      rolls < 19 ||
+      (rolls === 19 &&
+        (isSpare(lastScore, pins.slice(-1)[0]) || isStrike(pins.slice(-1)[0])));
+    return !gameNotOver;
+  };
 
   return (
     <div className="App">
