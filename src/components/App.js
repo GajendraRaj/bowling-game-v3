@@ -22,10 +22,7 @@ const App = () => {
     const frame = getUpdatedFrame(lastScore);
     const frameScore = getFrameScore(lastScore);
     const pins = gameState.pins.concat(lastScore);
-    const currentRoll =
-      isStrike(lastScore) && isEven(gameState.rolls)
-        ? gameState.rolls + 2
-        : gameState.rolls + 1;
+    const currentRoll = updateCurrentRoll(lastScore);
 
     setGameState((prevState) => {
       return {
@@ -83,6 +80,15 @@ const App = () => {
     }
 
     return frameScores;
+  };
+
+  const updateCurrentRoll = (lastScore) => {
+    const { rolls } = gameState;
+    if (isStrike(lastScore) && isEven(rolls) && rolls < 18) {
+      return rolls + 2;
+    } else {
+      return rolls + 1;
+    }
   };
 
   const isEven = (number) => {
