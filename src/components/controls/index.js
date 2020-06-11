@@ -4,13 +4,14 @@ import "./index.css";
 
 const Controls = (props) => {
   const disableButton = (number) => {
-    if (props.rolls % 2 === 0 || props.rolls === 0) {
+    const { rolls, lastRoll } = props;
+    if (rolls % 2 === 0 || rolls === 0) {
       return false;
     }
-    if (props.rolls === 19 && props.lastRoll === 10) {
+    if (rolls === 19 && lastRoll === 10) {
       return false;
     }
-    return props.lastRoll + number > 10;
+    return lastRoll + number > 10;
   };
 
   return (
