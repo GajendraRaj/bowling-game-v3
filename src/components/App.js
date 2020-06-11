@@ -74,7 +74,7 @@ const App = () => {
       }
 
       if (isStrike(pins.slice(-2)[0]) && rolls > 2 && rolls < 20) {
-        const bonus = pins.slice(-1)[0] + lastScore + 10;
+        const bonus = strikeBonus(pins.slice(-1)[0], lastScore);
         const previousFrame = bonus + currentScore;
 
         return isStrike(pins.slice(-1)[0]) && rolls === 19
@@ -85,7 +85,7 @@ const App = () => {
 
       return updatedFrameScore;
     } else if (isStrike(pins.slice(-2)[0]) && rolls > 2 && rolls < 20) {
-      const bonus = pins.slice(-1)[0] + lastScore + 10;
+      const bonus = strikeBonus(pins.slice(-1)[0], lastScore);
 
       return frameScores.concat(currentScore + bonus);
     } else if (isEven(rolls) && isSpare(pins.slice(-2)[0], pins.slice(-1)[0])) {
@@ -126,6 +126,8 @@ const App = () => {
   const isBonusRoll = (rolls) => {
     return rolls === 20;
   };
+
+  const strikeBonus = (roll1, roll2) => 10 + roll1 + roll2;
 
   return (
     <div className="App">
