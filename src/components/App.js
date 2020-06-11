@@ -65,11 +65,21 @@ const App = () => {
           lastScore
         : frames[getFrameIndex(frames)].slice(-1)[0] + lastScore;
 
+      if (
+        isStrike(pins.slice(-1)[0]) &&
+        !isStrike(pins.slice(-2)[0]) &&
+        rolls === 19
+      ) {
+        return frameScores;
+      }
+
       if (isStrike(pins.slice(-2)[0]) && rolls > 2 && rolls < 20) {
         const bonus = pins.slice(-1)[0] + lastScore + 10;
         const previousFrame = bonus + currentScore;
 
-        return frameScores.concat(previousFrame, frameScore + previousFrame);
+        return isStrike(pins.slice(-1)[0]) && rolls === 19
+          ? frameScores.concat(previousFrame)
+          : frameScores.concat(previousFrame, frameScore + previousFrame);
       }
       const updatedFrameScore = frameScores.concat(currentScore + frameScore);
 

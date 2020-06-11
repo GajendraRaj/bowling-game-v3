@@ -117,7 +117,7 @@ describe("App component", () => {
       }
     }
 
-    expect(wrapper.find(Scorecard).props().totalScore).toEqual(240);
+    expect(wrapper.find(Scorecard).props().totalScore).toEqual(270);
   });
 
   it("should generate last frame score correctly if got the spare in last frame", () => {
@@ -134,5 +134,21 @@ describe("App component", () => {
     }
 
     expect(wrapper.find(Scorecard).props().totalScore).toEqual(150);
+  });
+
+  it("should generate last frame score correctly if gets the strike bonus in last frame", () => {
+    const wrapper = mount(<App />);
+    for (let i = 0; i < 10; i++) {
+      const startButton1 = wrapper.find(Controls).find("button").at(10);
+      startButton1.simulate("click");
+      if (i === 9) {
+        const startButton2 = wrapper.find(Controls).find("button").at(10);
+        const startButton3 = wrapper.find(Controls).find("button").at(10);
+        startButton2.simulate("click");
+        startButton3.simulate("click");
+      }
+    }
+
+    expect(wrapper.find(Scorecard).props().totalScore).toEqual(300);
   });
 });

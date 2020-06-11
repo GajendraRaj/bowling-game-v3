@@ -7,7 +7,9 @@ const Controls = (props) => {
     if (props.rolls % 2 === 0 || props.rolls === 0) {
       return false;
     }
-
+    if (props.rolls === 19 && props.lastRoll === 10) {
+      return false;
+    }
     return props.lastRoll + number > 10;
   };
 
