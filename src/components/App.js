@@ -138,6 +138,7 @@ const App = () => {
       rolls < 19 ||
       (rolls === 19 &&
         (isSpare(lastScore, pins.slice(-1)[0]) || isStrike(pins.slice(-1)[0])));
+
     return !gameNotOver;
   };
 

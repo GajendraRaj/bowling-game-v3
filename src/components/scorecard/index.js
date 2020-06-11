@@ -5,9 +5,11 @@ import "./index.css";
 
 const Scorecard = (props) => {
   const { frameScores, totalScore, frames } = props;
+
   const renderScores = (frame, roll) => {
     return frames[frame] ? frames[frame][roll] : "";
   };
+
   return (
     <div className="Container">
       <table id="table" className="Scorecard" cellPadding="1" cellSpacing="0">
